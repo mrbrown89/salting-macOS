@@ -100,7 +100,7 @@ If the states converge cleanly and idempotently here, I’m happy to trust them 
 
 ## Workflow
 
-```
+```mermaid
 flowchart TD
     A["Golden macOS VM"] --> B["Packer Build"]
     B --> C["Boot VM"]
