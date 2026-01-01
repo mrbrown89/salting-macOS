@@ -1,0 +1,17 @@
+---
+- name: Clone personal macOS repo
+  hosts: all
+  gather_facts: false
+
+  vars:
+    repo_url: "git@github.com:mrbrown89/salting-macOS.git"
+    repo_branch: "main"
+    repo_dest: "/Users/Matt/Documents/salting-macOS"
+
+  tasks:
+    - name: Clone personal macOS repo
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ repo_dest }}"
+        version: "{{ repo_branch }}"
+        update: yes
