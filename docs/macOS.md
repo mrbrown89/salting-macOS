@@ -25,7 +25,7 @@ dock_magnification:
 
 The above example shows a state to set magnification in the dock. 
 
-In this example we are using Salt's [mac defaults](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.macdefaults.html) module.
+In this example we are using Salt's [macdefaults](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.macdefaults.html) module.
 
 The `user` argument is a variable by using the `user.sls` pillar file. To use this we need to declare the pillar at the start of the state file which you can see is set to:
 
@@ -37,16 +37,17 @@ The last state will restart the dock by killing the running process but only if 
 
 ## Dark Mode
 
-This state will set dark mode on macOS for the user by editing a plist. But its different to our `dock.sls` state:
+This state will set dark mode on macOS for the user by editing a plist. Just like the dock state we are using Salt's macdefaults module:
 
 ```
 enable_dark_mode:
-  cmd.run:
-    - name: sudo -u Matt defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
-    - unless: sudo -u Matt defaults read NSGlobalDomain AppleInterfaceStyle | grep -q '^Dark$'
+  macdefaults.write:
+    - name: AppleInterfaceStyle
+    - domain: NSGlobalDomain
+    - value: Dark
+    - user: {{ user }}
+    - vtype: string
 ```
-
-We still have the `unless` requisite in there but we only have the `name` argument. This is because we are writing to the hidden `.NSGlobalDomain` plist. 
 
 ## Rosetta
 
