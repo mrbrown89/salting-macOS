@@ -100,23 +100,17 @@ If the states converge cleanly and idempotently here, I’m happy to trust them 
 
 ## Workflow
 
+```
 flowchart TD
-    A[Golden macOS VM<br/>(immutable base)] -->|clone| B[Packer Build]
-
-    B --> C[Boot macOS VM]
-    C --> D[SSH Ready]
-
-    D --> E[Ansible Provisioner]
-    E --> F[Clone macOS Salt Repo]
-
-    F --> G[Run bootStrap.sh]
-    G --> H[Install Salt]
-    H --> I[Apply Salt States]
-
-    I -->|Idempotent & Clean| J[Shutdown VM]
-    I -->|Error / Non-idempotent| X[Fail CI Build]
-
-    J --> K[VM Discarded]
-    K --> L[States considered safe]
-
-    X --> M[Fix states before real Macs]
+    A["Golden macOS VM"] --> B["Packer Build"]
+    B --> C["Boot VM"]
+    C --> D["SSH Available"]
+    D --> E["Ansible Provisioning"]
+    E --> F["Repo Cloned to VM"]
+    F --> G["Run bootStrap.sh"]
+    G --> H["Install Salt"]
+    H --> I["Apply Salt States"]
+    I --> J["Shutdown VM"]
+    I --> K["Build Fails"]
+    J --> L["VM Discarded"]
+```
