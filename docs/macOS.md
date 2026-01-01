@@ -15,23 +15,23 @@ Lets look at an example:
 ```
 # Magnification
 dock_magnification:
-  cmd.run:
-    - name: defaults write com.apple.dock magnification -bool true
-    - runas: Matt
-    - unless: defaults read com.apple.dock magnification | grep -q '^1$'
+  macdefaults.write:
+    - name: magnification
+    - domain: com.apple.dock
+    - value: True
+    - user: {{ user }}
+    - vtype: bool
 ```
 
 The above example shows a state to set magnification in the dock. 
 
-We can see the `cmd.run` module.function being called with the command to run being:
+In this example we are using Salt's [mac defaults](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.macdefaults.html) module.
+
+The `user` argument is a variable by using the `user.sls` pillar file. To use this we need to declare the pillar at the start of the state file which you can see is set to:
 
 ```
-    defaults write com.apple.dock magnification -bool true
+{% set user = pillar['user']['primary_user'] %}
 ```
-
-Next we see the `runas` argument which tells what user to run the salt command as. Since the dock is under the users preferences in `~/Library/Preferences/`, we need to assign a user.
-
-The last line in our state uses the `unless` requisite to check if our setting is already in place by running `defaults read`. If the setting is already in place then salt won't run the `defaults write` command.
 
 The last state will restart the dock by killing the running process but only if states have been run. Salt will know whats been run with the `watch` requisite.
 
