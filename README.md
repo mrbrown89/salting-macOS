@@ -12,6 +12,8 @@ Using Salt, we are able to build a mac and continue to mange the mac using Salt 
 
 Professional I use Jamf to manage macs but I can't and don't want to pay for Jamf to manage my personal mac and any VMs I want to tinker with! But I do use Salt professional to manage ~60 Windows machines in an animation studio as well as Linux systems including a ZFS based NAS.
 
+The stuff in this repo is a basic clone of the one I use to mange my mac. I've tried to keep examples simple but with enough stuff going on.
+
 ---
 
 ## Quickstart
