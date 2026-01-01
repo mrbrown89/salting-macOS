@@ -79,6 +79,36 @@ Which makes failures meaningful instead of theoretical.
 
 ## How States Are Tested
 
-In short the same way we would on a fresh mac! The beauty of using Packer and a Golden VM means we have a mac already in a good state i.e. repo is cloned, home brew and xcode tools are installed. 
+In short: the same way I would on a fresh Mac.
 
-So all we need to do now it run the `bootStrap.sh` script which will install salt and run a salt call. Normally the script will also handle installing xcode command line tools and Home Brew but to avoid having to wait on that we pre bake that into our Golden VM. 
+The beauty of using Packer and a golden VM is that we already start from a known-good state:
+- the repo is cloned (using Ansible via Packer)
+- Xcode Command Line Tools are installed
+- Homebrew is installed
+
+This avoids wasting time waiting for installers during every CI run.
+
+Once the VM is up, all that’s left to do is run the `bootStrap.sh` script. This script:
+- installs Salt
+- applies the Salt states locally
+
+Normally `bootStrap.sh` can also install Xcode tools and Homebrew, but those steps are intentionally pre baked into the golden VM to keep CI runs fast and predictable.
+
+If the states converge cleanly and idempotently here, I’m happy to trust them on a real machine.
+
+---
+
+## Workflow
+
+flowchart TD
+    A[Golden macOS VM] -->|Clone| B[Packer Build]
+    B --> C[Boot VM]
+    C --> D[SSH Available]
+    D --> E[Ansible Provisioning]
+    E --> F[Repo Cloned to VM]
+    F --> G[Run bootStrap.sh]
+    G --> H[Install Salt]
+    H --> I[Apply Salt States]
+    I -->|Success| J[Shutdown VM]
+    I -->|Failure| K[Build Fails]
+    J --> L[VM Discarded]
