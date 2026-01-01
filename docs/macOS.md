@@ -2,6 +2,8 @@
 
 These states handle macOS level
 
+---
+
 ## Dock
 
 Sets the dock settings by editing the key value pair in the users `com.apple.dock` plist.
@@ -35,6 +37,8 @@ The `user` argument is a variable by using the `user.sls` pillar file. To use th
 
 The last state will restart the dock by killing the running process but only if states have been run. Salt will know whats been run with the `watch` requisite.
 
+---
+
 ## Dark Mode
 
 This state will set dark mode on macOS for the user by editing a plist. Just like the dock state we are using Salt's macdefaults module:
@@ -49,9 +53,13 @@ enable_dark_mode:
     - vtype: string
 ```
 
+---
+
 ## Rosetta
 
 State installs rosetta on Apple Silicon Macs. Nice and simple :D 
+
+---
 
 ## Shell
 

@@ -12,6 +12,8 @@ Using Salt, we are able to build a mac and continue to mange the mac using Salt 
 
 Professional I use Jamf to manage macs but I can't and don't want to pay for Jamf to manage my personal mac and any VMs I want to tinker with! But I do use Salt professional to manage ~60 Windows machines in an animation studio as well as Linux systems including a ZFS based NAS.
 
+---
+
 ## Quickstart
 
 1. Set up your mac as normal with a user account and what not. At this stage I also install xcode from the app store.
@@ -24,9 +26,13 @@ Professional I use Jamf to manage macs but I can't and don't want to pay for Jam
     - salt
     - run a salt call to build out salt states
     
+---
+    
 ## CI
 
 I have included a continuous integration section in this repo which will allow you to test states in a VM first. Please refer to the CI document in the docs directory for detailed instructions on how to use Packer with Ansible and Parallels to build a test VM and test your states.
+
+---
 
 ## Documentation
 
