@@ -27,3 +27,7 @@ Professional I use Jamf to manage macs but I can't and don't want to pay for Jam
 ## CI
 
 I have included a continuous integration section in this repo which will allow you to test states in a VM first. Please refer to the CI document in the docs directory for detailed instructions on how to use Packer with Ansible and Parallels to build a test VM and test your states.
+
+## Documentation
+
+Further detailed documentation can be found in the `/docs` directory.
