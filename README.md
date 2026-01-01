@@ -17,7 +17,7 @@ Professional I use Jamf to manage macs but I can't and don't want to pay for Jam
 1. Set up your mac as normal with a user account and what not. At this stage I also install xcode from the app store.
 2. Grant full disk access to terminal.
 3. Clone this repo to your mac.
-4. Edit the username set in `/salting-macOS/pillar/user.sls` to your user. I've left my name in as an example.
+4. Edit the username and home directory set in `/salting-macOS/pillar/user.sls` to your user. I've left my name in as an example.
 5. In terminal `cd` to the `bootStrap.sh` script. Make it executable with `chmod +x bootStrap.sh` and then run it with `./bootStrap.sh`. The script will install:
     - xcode tools
     - home brew
