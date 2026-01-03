@@ -1,5 +1,7 @@
 # salting-macOS
 
+![CI Status](https://img.shields.io/badge/CI-failing-red?style=flat-square)
+
 Welcome to my salting macOS repo!
 
 I've created this repo to offer some templates and guidance on using [SaltStack](https://saltproject.io/) to manage macOS. 
