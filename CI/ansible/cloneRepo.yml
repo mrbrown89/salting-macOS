@@ -4,7 +4,7 @@
   gather_facts: false
 
   vars:
-    repo_url: "git@github.com:mrbrown89/salting-macOS.git"
+    repo_url: "https://github.com/mrbrown89/salting-macOS.git"
     repo_branch: "main"
     repo_dest: "/Users/Matt/Documents/salting-macOS"
 
