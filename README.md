@@ -1,6 +1,6 @@
 # salting-macOS
 
-![CI Status](https://img.shields.io/badge/CI-failing-red?style=flat-square)
+![CI Status](https://img.shields.io/badge/CI-passing-brightgreen?style=flat-square)
 
 Welcome to my salting macOS repo!
 
