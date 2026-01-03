@@ -34,6 +34,12 @@ The stuff in this repo is a basic clone of the one I use to mange my mac. I've t
 ```
   sudo salt-call --local state.apply saltenv=base --file-root="/path/to/salt/directory" --pillar-root="/path/to/pillar/directory" test=false
 ```
+
+To run a test build run:
+
+```
+  sudo salt-call --local state.apply saltenv=base --file-root="/path/to/salt/directory" --pillar-root="/path/to/pillar/directory" test=true
+```
     
 ---
     
