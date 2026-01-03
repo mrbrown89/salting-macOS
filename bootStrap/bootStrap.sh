@@ -82,6 +82,8 @@ run_salt() {
   echo ">>> Running Salt states (masterless)..."
 
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+  # Dynamically find the salt state directory
   SALT_STATE_PATH="${SALT_STATE_PATH:-${SCRIPT_DIR}/../salt}"
   SALT_STATE_PATH="$(cd "${SALT_STATE_PATH}" && pwd)"
 
@@ -93,9 +95,23 @@ run_salt() {
 
   echo ">>> Using Salt state directory: ${SALT_STATE_PATH}"
 
+  # Dynamically find the pillar directory
+  PILLAR_PATH="${PILLAR_PATH:-${SCRIPT_DIR}/../pillar}"
+  PILLAR_PATH="$(cd "${PILLAR_PATH}" && pwd)"
+
+  if [[ ! -f "${PILLAR_PATH}/top.sls" ]]; then
+    echo ">>> FATAL: top.sls not found in pillar directory."
+    echo ">>> Expected at: ${PILLAR_PATH}/top.sls"
+    exit 1
+  fi
+
+  echo ">>> Using Salt pillar directory: ${PILLAR_PATH}"
+
+  # Run masterless salt-call with dynamic file root and pillar root. Means the repo can be cloned to anywhere.
   sudo salt-call --local state.apply \
     saltenv=base \
-    --file-root="${SALT_STATE_PATH}"
+    --file-root="${SALT_STATE_PATH}" \
+    --pillar-root="${PILLAR_PATH}"
 }
 
 main() {
