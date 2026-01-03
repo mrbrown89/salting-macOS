@@ -18,11 +18,6 @@ variable "local_user" {
   default = "Matt"
 }
 
-variable "github_token" {
-  type      = string
-  sensitive = true
-}
-
 # -------- Source --------
 source "parallels-macvm" "tahoe" {
   source_path      = "/Users/${var.username}/Parallels/GoldenImages/tahoe-base-26.2.macvm"
