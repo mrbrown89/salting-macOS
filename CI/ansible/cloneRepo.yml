@@ -1,5 +1,5 @@
 ---
-- name: Clone personal macOS repo
+- name: Clone salting macOS repo
   hosts: all
   gather_facts: false
 
@@ -9,7 +9,7 @@
     repo_dest: "/Users/Matt/Documents/salting-macOS"
 
   tasks:
-    - name: Clone personal macOS repo
+    - name: Clone salting macOS repo
       ansible.builtin.git:
         repo: "{{ repo_url }}"
         dest: "{{ repo_dest }}"
